@@ -66,6 +66,7 @@ var DEFAULT_SETTINGS = {
 
     // Other settings
     idPrefix: "token-input-",
+    appendTo: "body",
 
     // Keep track if the input is currently in disabled mode
     disabled: false
@@ -418,7 +419,7 @@ $.TokenList = function (input, url_or_data, settings) {
     // The list to store the dropdown items in
     var dropdown = $("<div>")
         .addClass($(input).data("settings").classes.dropdown)
-        .appendTo("body")
+        .appendTo(settings.appendTo)
         .hide();
 
     // Magic element to help us resize the text input
