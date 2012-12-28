@@ -67,6 +67,7 @@ var DEFAULT_SETTINGS = {
     // Other settings
     idPrefix: "token-input-",
     appendTo: "body",
+    autoHide: true,
 
     // Keep track if the input is currently in disabled mode
     disabled: false
@@ -252,14 +253,17 @@ $.TokenList = function (input, url_or_data, settings) {
             token_list.addClass($(input).data("settings").classes.focused);
         })
         .blur(function () {
-            hide_dropdown();
-            
-            if ($(input).data("settings").allowFreeTagging) {
-              add_freetagging_tokens();
-            }
-            
-            $(this).val("");
-            token_list.removeClass($(input).data("settings").classes.focused);
+    		if (settings.autoHide)
+			{
+                hide_dropdown();
+                
+                if ($(input).data("settings").allowFreeTagging) {
+                  add_freetagging_tokens();
+                }
+                
+                $(this).val("");
+                token_list.removeClass($(input).data("settings").classes.focused);
+			}
         })
         .bind("keyup keydown blur update", resize_input)
         .keydown(function (event) {
